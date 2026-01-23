@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 export default function ResetPassword() {
   const { token } = useParams();
   const [password, setPassword] = useState('');
-  const [msg, setMsg] = useState('');
+  const navigate = useNavigate();
 
   const submit = async (e) => {
     e.preventDefault();
@@ -14,9 +14,12 @@ export default function ResetPassword() {
         `http://localhost:5000/api/auth/reset-password/${token}`,
         { password }
       );
-      setMsg(res.data.msg);
+      alert(res.data.msg);
+
+      // Redirect to login after successful reset
+      navigate('/');
     } catch (err) {
-      setMsg(err.response?.data?.msg || 'Error');
+      alert(err.response?.data?.msg || 'Error resetting password');
     }
   };
 
@@ -24,11 +27,14 @@ export default function ResetPassword() {
     <div className="container">
       <h2>Reset Password</h2>
       <form onSubmit={submit}>
-        <input type="password" placeholder="New Password" onChange={e => setPassword(e.target.value)} />
+        <input
+          type="password"
+          placeholder="New Password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
         <button>Reset</button>
       </form>
-
-      <p className="success">{msg}</p>
     </div>
   );
 }
