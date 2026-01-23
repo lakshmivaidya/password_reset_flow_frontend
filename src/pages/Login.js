@@ -11,7 +11,7 @@ export default function Login() {
   const submit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', {
+      const res = await axios.post('https://password-reset-flow-backend-lcqd.onrender.com/api/auth/login', {
         email,
         password
       });
@@ -19,9 +19,6 @@ export default function Login() {
       // Show success popup
       alert(res.data.msg);
 
-      // Optionally redirect after login
-      // For example, to a dashboard page
-      // navigate('/dashboard');
     } catch (err) {
       alert(err.response?.data?.msg || 'Login failed');
     }
