@@ -11,7 +11,7 @@ export default function ResetPassword() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `https://password-reset-flow-backend-lcqd.onrender.com/api/auth/reset-password/${token}`,
+        `https://password-reset-flow-backend-seven.vercel.app/api/auth/reset-password/${token}`,
         { password }
       );
       alert(res.data.msg);

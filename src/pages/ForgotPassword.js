@@ -8,7 +8,7 @@ export default function ForgotPassword() {
   const submit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('https://password-reset-flow-backend-lcqd.onrender.com/api/auth/forgot-password', { email });
+      const res = await axios.post('https://password-reset-flow-backend-seven.vercel.app/api/auth/forgot-password', { email });
       alert(res.data.msg);
     } catch (err) {
       alert(err.response?.data?.msg || 'Error sending reset link');

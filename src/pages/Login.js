@@ -11,7 +11,7 @@ export default function Login() {
   const submit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('https://password-reset-flow-backend-lcqd.onrender.com/api/auth/login', {
+      const res = await axios.post('https://password-reset-flow-backend-seven.vercel.app/api/auth/login', {
         email,
         password
       });
